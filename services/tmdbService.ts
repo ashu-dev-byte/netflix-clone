@@ -1,11 +1,11 @@
 import { getAPIService } from 'services/index'
 
-export const getActionMovies = async () => {
+export const getActionTitles = async () => {
     const res = await getAPIService('/discover/movie', { with_genres: 28 })
     return res.data.results
 }
 
-export const getComedyMovies = async () => {
+export const getComedyTitles = async () => {
     const res = await getAPIService('/discover/movie', { with_genres: 35 })
     return res.data.results
 }
@@ -15,7 +15,7 @@ export const getDocumentaries = async () => {
     return res.data.results
 }
 
-export const getHorrorMovies = async () => {
+export const getHorrorTitles = async () => {
     const res = await getAPIService('/discover/movie', { with_genres: 27 })
     return res.data.results
 }
@@ -25,7 +25,7 @@ export const getNetflixOriginals = async () => {
     return res.data.results
 }
 
-export const getRomanceMovies = async () => {
+export const getRomanceTitles = async () => {
     const res = await getAPIService('/discover/movie', { with_genres: 10749 })
     return res.data.results
 }

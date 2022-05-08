@@ -3,7 +3,7 @@ export interface Genre {
     name: string
 }
 
-export interface Movie {
+export interface Title {
     title: string
     backdrop_path: string
     media_type?: string

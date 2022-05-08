@@ -1,39 +1,30 @@
 import Head from 'next/head'
 import Header from 'components/Header'
 import Banner from 'components/Banner'
-import { Movie } from 'typings'
+import { Title } from 'typings'
 import {
-    getActionMovies,
-    getComedyMovies,
+    getActionTitles,
+    getComedyTitles,
     getDocumentaries,
-    getHorrorMovies,
+    getHorrorTitles,
     getNetflixOriginals,
-    getRomanceMovies,
+    getRomanceTitles,
     getTendingNow,
     getTopRated,
 } from 'services/tmdbService'
 
-interface Props {
-    actionMovies: Movie[]
-    comedyMovies: Movie[]
-    documentaries: Movie[]
-    horrorMovies: Movie[]
-    netflixOriginals: Movie[]
-    romanceMovies: Movie[]
-    trendingNow: Movie[]
-    topRated: Movie[]
+export interface HomeProps {
+    actionTitles: Title[]
+    comedyTitles: Title[]
+    documentaries: Title[]
+    horrorTitles: Title[]
+    netflixOriginals: Title[]
+    romanceTitles: Title[]
+    trendingNow: Title[]
+    topRated: Title[]
 }
 
-const Home = ({
-    actionMovies,
-    comedyMovies,
-    documentaries,
-    horrorMovies,
-    netflixOriginals,
-    romanceMovies,
-    trendingNow,
-    topRated,
-}: Props) => {
+const Home = (props: HomeProps) => {
     return (
         <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-gradientBgColor lg:h-[140vh]">
             <Head>
@@ -46,11 +37,12 @@ const Home = ({
 
             <Header />
 
-            <main>
-                <Banner />
+            <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
+                <Banner genreData={props} />
 
-                <section></section>
+                <section>{/* <SlidingRow/> */}</section>
             </main>
+            {/* <InfoModal/> */}
         </div>
     )
 }
@@ -60,12 +52,12 @@ export default Home
 export const getServerSideProps = async () => {
     return {
         props: {
-            actionMovies: await getActionMovies(),
-            comedyMovies: await getComedyMovies(),
+            actionTitles: await getActionTitles(),
+            comedyTitles: await getComedyTitles(),
             documentaries: await getDocumentaries(),
-            horrorMovies: await getHorrorMovies(),
+            horrorTitles: await getHorrorTitles(),
             netflixOriginals: await getNetflixOriginals(),
-            romanceMovies: await getRomanceMovies(),
+            romanceTitles: await getRomanceTitles(),
             trendingNow: await getTendingNow(),
             topRated: await getTopRated(),
         },

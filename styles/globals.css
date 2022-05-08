@@ -5,7 +5,7 @@
 /* html, body */
 @layer base {
     body {
-        @apply bg-backgroundColor text-white;
+        @apply m-0 bg-backgroundColor p-0 text-white;
     }
 
     header {
@@ -17,5 +17,9 @@
 @layer components {
     .navItem {
         @apply cursor-pointer text-sm font-light text-lightGray transition duration-[.4s] hover:text-darkGray;
+    }
+
+    .bannerBtn {
+        @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
     }
 }

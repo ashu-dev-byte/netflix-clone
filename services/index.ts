@@ -1,9 +1,10 @@
 import axios from 'axios'
+import { TMDB_BASE_URL, TMDB_API_KEY, AUTH_TOKEN } from 'constants/keys'
 
 const axiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_TMDB_BASE_URL,
+    baseURL: TMDB_BASE_URL,
     params: {
-        api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
+        api_key: TMDB_API_KEY,
         language: 'en-US',
     },
 })
@@ -13,7 +14,7 @@ axiosInstance.interceptors.request.use(function (config) {
         ...config,
         headers: {
             ...config.headers,
-            Authorization: process.env.NEXT_PUBLIC_AUTH_TOKEN,
+            Authorization: AUTH_TOKEN,
         },
     }
 })
