@@ -1,17 +1,28 @@
 module.exports = {
-    content: [
-        './pages/**/*.{js,ts,jsx,tsx}',
-        './components/**/*.{js,ts,jsx,tsx}',
-    ],
+    content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            backgroundImage: {
+                "gradient-to-b":
+                    "linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);",
+            },
             colors: {
-                lightGray: '#e5e5e5',
-                darkGray: '#b3b3b3',
-                backgroundColor: '#141414',
-                gradientBgColor: '#010511',
+                lightGray: "#e5e5e5",
+                darkGray: "#b3b3b3",
+                backgroundColor: "#141414",
+                gradientBgColor: "#010511",
+            },
+            spacing: {
+                50: "14.5rem",
             },
         },
     },
-    plugins: [require('tailwindcss-textshadow')],
+    plugins: [
+        require("tailwindcss-textshadow"),
+        require("tailwind-scrollbar-hide"),
+        require("tailwind-scrollbar"),
+    ],
+    variants: {
+        scrollbar: ["dark", "rounded"],
+    },
 }

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { BellIcon, SearchIcon } from '@heroicons/react/solid'
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { BellIcon, SearchIcon } from "@heroicons/react/solid"
 
 const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState<boolean>(false)
@@ -13,14 +13,14 @@ const Header: React.FC = () => {
                 setIsScrolled(false)
             }
         }
-        window.addEventListener('scroll', handleScroll)
+        window.addEventListener("scroll", handleScroll)
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            window.removeEventListener("scroll", handleScroll)
         }
     }, [])
 
     return (
-        <header className={`${isScrolled && 'bg-backgroundColor'}`}>
+        <header className={`${isScrolled && "bg-backgroundColor"}`}>
             <div className="flex items-center space-x-2 md:space-x-10">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
@@ -41,11 +41,7 @@ const Header: React.FC = () => {
                 <SearchIcon className="hidden h-6 w-6 sm:inline"></SearchIcon>
                 <BellIcon className="h-6 w-6"></BellIcon>
                 <Link href="/account">
-                    <img
-                        src="http://rb.gy/g1pwyx"
-                        alt="Profile Avatar"
-                        className="cursor-pointer rounded"
-                    />
+                    <img src="http://rb.gy/g1pwyx" alt="Profile Avatar" className="cursor-pointer rounded" />
                 </Link>
             </div>
         </header>

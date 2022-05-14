@@ -1,11 +1,11 @@
-import axios from 'axios'
-import { TMDB_BASE_URL, TMDB_API_KEY, AUTH_TOKEN } from 'constants/keys'
+import axios from "axios"
+import { TMDB_BASE_URL, TMDB_API_KEY, AUTH_TOKEN } from "constants/constants"
 
 const axiosInstance = axios.create({
     baseURL: TMDB_BASE_URL,
     params: {
         api_key: TMDB_API_KEY,
-        language: 'en-US',
+        language: "en-US",
     },
 })
 
@@ -19,10 +19,7 @@ axiosInstance.interceptors.request.use(function (config) {
     }
 })
 
-export const getAPIService = (
-    url: string,
-    params?: { with_genres?: number; with_networks?: number }
-) => {
+export const getAPIService = (url: string, params?: { with_genres?: number; with_networks?: number }) => {
     return axiosInstance
         .get(url, {
             params: params,

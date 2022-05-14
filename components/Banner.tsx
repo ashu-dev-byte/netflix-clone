@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { Title } from 'typings'
-import { HomeProps } from 'pages/index'
-import { getRandomTitleFromAllGenres } from 'utils'
-import { TMDB_IMAGE_BASE_URL as url } from 'constants/keys'
-import { InformationCircleIcon } from '@heroicons/react/outline'
-import { FaPlay } from 'react-icons/fa'
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { Title } from "typings"
+import { HomeProps } from "pages/index"
+import { getRandomTitleFromAllGenres } from "utils"
+import { TMDB_IMAGE_BASE_URL as url } from "constants/constants"
+import { InformationCircleIcon } from "@heroicons/react/outline"
+import { FaPlay } from "react-icons/fa"
 
 interface Props {
-    genreData: HomeProps
+    allGenreData: HomeProps
 }
 
-const Banner: React.FC<Props> = ({ genreData }) => {
+const Banner: React.FC<Props> = ({ allGenreData }) => {
     const [title, setTitle] = useState<Title | null>(null)
 
     useEffect(() => {
-        setTitle(getRandomTitleFromAllGenres(genreData))
+        setTitle(getRandomTitleFromAllGenres(allGenreData))
     }, [])
 
     return (
@@ -39,8 +39,7 @@ const Banner: React.FC<Props> = ({ genreData }) => {
                     Play
                 </button>
                 <button className="bannerBtn bg-[gray]/70">
-                    <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" />{' '}
-                    More Info
+                    <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" /> More Info
                 </button>
             </div>
         </div>
