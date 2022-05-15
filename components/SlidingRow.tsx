@@ -9,15 +9,16 @@ interface Props {
 }
 
 const SlidingRow: React.FC<Props> = ({ title, genreData }) => {
-    const [hasScrolled, setHasScrolled] = useState<boolean>(false)
+    const [scrolledDistance, setScrolledDistance] = useState<number | undefined>(0)
     const rowRef = useRef<HTMLDivElement>(null)
 
     const handleClick = (direction: string) => {
-        setHasScrolled(true)
         if (rowRef.current) {
             const { scrollLeft, clientWidth } = rowRef.current
-            const scrollDistance = direction === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth
-            rowRef.current.scrollTo({ left: scrollDistance, behavior: "smooth" })
+            const updatedPosition =
+                direction === "left" ? scrollLeft - clientWidth * 0.6 : scrollLeft + clientWidth * 0.6
+            setScrolledDistance(updatedPosition)
+            rowRef.current.scrollTo({ left: updatedPosition, behavior: "smooth" })
         }
     }
 
@@ -31,12 +32,13 @@ const SlidingRow: React.FC<Props> = ({ title, genreData }) => {
             </h2>
             <div className="group relative md:-ml-2">
                 <ChevronLeftIcon
-                    className={`sliderBtn left-2 ${!hasScrolled && "hidden"}`}
+                    className={`sliderBtn left-2 ${!scrolledDistance && "hidden"}`}
                     onClick={() => handleClick("left")}
                 />
                 <div
-                    ref={rowRef}
                     className="flex items-center space-x-0.5 overflow-x-scroll scrollbar-hide md:space-x-2.5 md:p-2"
+                    ref={rowRef}
+                    onScroll={() => setScrolledDistance(rowRef.current?.scrollLeft)}
                 >
                     {genreData.map((movie) => (
                         <Thumbnail key={movie.id} title={movie} />
