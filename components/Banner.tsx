@@ -32,7 +32,7 @@ const Banner: React.FC<Props> = ({ allGenreData }) => {
                 {title?.title || title?.name || title?.original_name}
             </h1>
             <p className="max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
-                {overview && overview.length < 1000 ? overview : `${overview?.substring(0, 1000)}...`}
+                {overview && overview.length < 320 ? overview : `${overview?.substring(0, 320)}...`}
             </p>
             <div className="flex space-x-3">
                 <button className="bannerBtn bg-white text-black">
